@@ -1,6 +1,11 @@
 p{
   color: green;
 }
-.navbar p{
-  color: blue;
+header.h1{
+  float: center;
 }
+nav{
+  color: blue;
+  background-color: gray;
+}
+
