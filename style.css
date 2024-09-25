@@ -1,11 +1,8 @@
 p{
   color: green;
 }
-h1.title{
-  float: center;
-}
-.logo{
-  float: left;
+header{
+  float:left;
 }
 nav{
   color: blue;
