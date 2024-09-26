@@ -98,7 +98,7 @@ footer{
     text-align: center;
     padding-right: 5px;
 }
-p, li, blockquote, h2{
+p, li, blockquote, h2, h1{
     word-wrap: break-word;
 }
 img{
