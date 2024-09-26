@@ -1,0 +1,107 @@
+body{
+    background-image: linear-gradient( #9966ff, #ffffff);
+}
+header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    font-family: Arial;
+    color: black;
+    width: auto;
+}
+.title{
+    height: 150px;
+    font-size: 20px;
+    border: solid black;
+    text-align: center;
+    background: whitesmoke;
+    margin-bottom: 0%;
+    color: white;
+    background-image: url(starBackTest.jpg)
+}
+.navbar{
+    height: fit-content;
+    border: solid black;
+    background-color: lightskyblue;
+    text-align: left;
+    text-size-adjust: auto;
+}
+.navbarA{
+    border: solid black;
+    background-color: whitesmoke;
+    font-size: 20px;
+    border: solid darkgray 0.5px;
+    margin: 3px;
+    padding: 2px;
+    padding-top: 0px;
+    margin-top: 0px;
+    border-top: 0px;
+    padding-bottom: 0.2px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.sideLeft{
+    float: left;
+    width: 12%;
+    margin: 1%;
+    background-color: white;
+    padding: 0.5%;
+    padding-top: 0%;
+    border-width: 0.5%;
+}
+h3.sideLeft{
+    font-size: medium;
+}
+ol.sideLeftList, ul.sideLeftList{
+    padding-left: 15px;
+    margin: 1px;
+}
+.mainArticle{
+    float: left;
+    font-family: Arial;
+    color: black;
+    font-size: 16px;
+    width: 69%;
+    height: auto;
+    margin: 0;
+    border-top-width:1px;
+    border-width: 0.5%;
+    background-color: lightgray;
+    padding: 0.5%;
+}
+.sideRight{
+    float: left;
+    width: 12%;
+    margin: 1%;
+    background-color: white;
+    padding: 0.5%;
+    border-width: 0.5%;
+    text-align: center;
+}
+@media screen and (max-width: 1000px){
+    .mainArticle, .sideRight, .sideLeft{
+        width: auto;
+        margin: 0%;
+        box-align: center;
+        float: none;
+        border: solid black 2px;
+    }
+}
+.row::after{
+    content: "";
+  display: table;
+  clear: both;
+}
+footer{
+    border: solid black;
+    background: lightgray;
+    text-align: center;
+    padding-right: 5px;
+}
+p, li, blockquote, h2{
+    word-wrap: break-word;
+}
+img{
+    float:left;
+    padding-right: 5px;
+}
