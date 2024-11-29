@@ -40,10 +40,10 @@ var Player = {
 
 //Level One create
 var L1 = new Level();
-    var L1R1 = new room;
+    var L1R1 = new Room();
         L1R1.description = "Room One";
         L1R1.north = "l1r2";
-    var L1R2 = new room;
+    var L1R2 = new Room();
         L1R2.description = "Room Two";
         L1R1.south = "l1r1";
 L1.rooms = [L1R1, L1R2];
