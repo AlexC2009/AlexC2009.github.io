@@ -7,8 +7,6 @@ var movements = ["North", "South", "East", "West", "Up", "Down", "Northeast", "N
 
 //Basic gameplay objects as constructor functions
 function Room(){
-    this.description = "";
-    this.itemsInside = [];
     //Connected rooms
     this.north = false;
     this.south = false;
@@ -31,9 +29,21 @@ function Room(){
     this.northWestDoor = false;
     this.southEastDoor = false;
     this.southWestDoor = false;
+    //Items
+    this.furniture = [];
+    this.description = "";
 }
 function Level(){
     this.rooms = [];
+}
+function Item(){
+    this.use = function(){
+        console.log("Used!");
+    }
+}
+function Furniture(){
+    this.inReach = true;
+    this.onTop = [];
 }
 //Player object
 var Player = {
@@ -61,8 +71,7 @@ var Player = {
             this.atRoom = this.atRoom.southEast;
         } else if (direction == "Southwest"){
             this.atRoom = this.atRoom.southWest;
-        }
-        else {
+        } else {
             //Teleport to specified room if not a direction
             this.atRoom = direction;
         }
@@ -70,6 +79,7 @@ var Player = {
     //Inventory
     inventory: [],
     getItem: function(item){
+        this.atRoom.itemsInside.pop(item);
         this.inventory.push(item);
     }
 };
