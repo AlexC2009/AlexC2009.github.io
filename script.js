@@ -11,6 +11,8 @@ function Room(){
     this.south = false;
     this.east = false;
     this.west = false;
+    this.up = false;
+    this.down = false;
 }
 function Level(){
     this.rooms = [];
@@ -29,6 +31,14 @@ var Player = {
             this.atRoom = this.atRoom.east;
         } else if (direction == "West"){
             this.atRoom = this.atRoom.west;
+        } else if (direction == "Up"){
+            this.atRoom = this.atRoom.up;
+        } else if (direction == "Down"){
+            this.atRoom = this.atRoom.down;
+        }
+        else {
+            //Teleport to specified room if not a direction
+            this.atRoom = direction;
         }
     },
     //Inventory
@@ -62,6 +72,10 @@ function canDo(action){
         return true;
     } else if(action == "West" && Player.atRoom.west != false){
         return true;
+    } else if(action == "Up" && Player.atRoom.up != false){
+        return true;
+    } else if(action == "Down" && Player.atRoom.down != false){
+        return true;
     } else{
         return false;
     }
@@ -79,13 +93,17 @@ function parseInput(){
             Player.move("East");
         } else if(input == "West"){
             Player.move("West");
+        } else if(input == "Up"){
+            Player.move("Up");
+        } else if(input == "Down"){
+            Player.move("Down");
         }
         //Add the parsed input to the outputLog
         //Temporary
         document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + output[output.length-1];
     } 
+     //Otherwise, output an error message
     else{
-        //Otherwise, output an error message
         document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n Error";
     }
 }
