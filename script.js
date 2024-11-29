@@ -2,20 +2,21 @@
 var input;
 var output = [];
 
-//Basic gameplay objects
-var room = {
-    description: "",
-    itemsInside: [],
+//Basic gameplay objects as constructor functions
+function Room(){
+    this.description = "";
+    this.itemsInside = [];
     //Connected rooms
-    north: false,
-    south: false,
-    east: false,
-    west: false,
-};
-var level = {
-    rooms: [],
-};
-var player = {
+    this.north = false;
+    this.south = false;
+    this.east = false;
+    this.west = false;
+}
+function Level(){
+    this.rooms = [];
+}
+//Player object
+var Player = {
     //Location
     atLevel: false,
     atRoom: false,
@@ -38,45 +39,46 @@ var player = {
 };
 
 //Level One create
-var l1 = new level;
-    var l1r1 = new room;
-        l1r1.description = "Room One";
-        l1r1.north = "l1r2";
-    var l1r2 = new room;
-        l1r2.description = "Room Two";
-        l1r1.south = "l1r1";
-l1.rooms = [l1r1, l1r2];
+var L1 = new Level();
+    var L1R1 = new room;
+        L1R1.description = "Room One";
+        L1R1.north = "l1r2";
+    var L1R2 = new room;
+        L1R2.description = "Room Two";
+        L1R1.south = "l1r1";
+L1.rooms = [L1R1, L1R2];
 //Spawn in at l1r1
-player.atLevel = l1;
-player.atRoom = l1r1;
+Player.atLevel = L1;
+Player.atRoom = L1R1;
 
-function parseInput(){
+
+function canDo(action){
     //If the action is possible, canDo is true
-    var canDo;
-    if(input == "North" && player.atRoom.north != false){
-        canDo = true;
-    } else if(input == "South" && player.atRoom.south != false){
-        canDo = true;
-    } else if(input == "East" && player.atRoom.east != false){
-        canDo = true;
-    } else if(input == "West" && player.atRoom.west != false){
-        canDo = true;
+    if(action == "North" && Player.atRoom.north != false){
+        return true;
+    } else if(action == "South" && Player.atRoom.south != false){
+        return true;
+    } else if(action == "East" && Player.atRoom.east != false){
+        return true;
+    } else if(action == "West" && Player.atRoom.west != false){
+        return true;
     } else{
-        canDo = false;
+        return false;
     }
-    
-    if (canDo == true){
+}
+function parseInput(){
+    if (canDo(input)){
         //Add input to the end of the running list of outputs
         output.push(input);
         //Do the action corresponding to the input
         if(input == "North"){
-            player.move("North");
+            Player.move("North");
         } else if(input == "South"){
-            player.move("South");
+            Player.move("South");
         } else if(input == "East"){
-            player.move("East");
+            Player.move("East");
         } else if(input == "West"){
-            player.move("West");
+            Player.move("West");
         }
         //Add the parsed input to the outputLog
         //Temporary
