@@ -2,6 +2,9 @@
 var input;
 var output = [];
 
+//Other variables
+var movements = ["North", "South", "East", "West", "Up", "Down"];
+
 //Basic gameplay objects as constructor functions
 function Room(){
     this.description = "";
@@ -98,9 +101,11 @@ function parseInput(){
         } else if(input == "Down"){
             Player.move("Down");
         }
-        //Add the parsed input to the outputLog
-        //Temporary
+        //Output the result of the action
         document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + output[output.length-1];
+        if (movements.includes(input)){
+            document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + Player.atRoom.description;
+        }
     } 
      //Otherwise, output an error message
     else{
