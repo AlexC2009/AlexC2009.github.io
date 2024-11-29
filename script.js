@@ -5,7 +5,7 @@ var output = [];
 //Basic gameplay objects
 var room = {
     description: "",
-    itemsInside = [],
+    itemsInside: [],
     //Connected rooms
     north: false,
     south: false,
