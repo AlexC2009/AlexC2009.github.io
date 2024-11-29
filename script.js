@@ -84,25 +84,51 @@ var Player = {
     }
 };
 
+//Level creation functions
+function linkNorthSouth(North, South){
+    South.north = North;
+    North.south = South;
+}
+function linkEastWest(East, West){
+    West.east = East;
+    East.west = West;
+}
+function linkUpDown(Up, Down){
+    Up.down = Down;
+    Down.up = Up;
+}
+function linkNESW(Northeast, Southwest){
+    Northeast.southwest = Southwest;
+    Southwest.northeast = Northeast;
+}
+function linkNWSE(Northwest, Southeast){
+    Northwest.southeast = Southeast;
+    Southeast.northwest = Northwest;
+}
+
 //Level One create
 var L1 = new Level();
 var L1R1 = new Room();
 var L1R2 = new Room();
 var L1R3 = new Room();
+var L1R4 = new Room();
+var L1R5 = new Room();
 L1R1.description = "Room One";
-L1R1.north = L1R2;
 L1R2.description = "Room Two";
-L1R2.south = L1R1;
-L1R2.down = L1R3;
 L1R3.description = "Room Three";
-L1R3.up = L1R2;
-L1R3.southWest = L1R1;
-L1.rooms = [L1R1, L1R2];
+L1R4.description = "Room Four";
+L1R5.description = "Room Five";
+linkNorthSouth(L1R2,L1R1);
+linkEastWest(L1R3, L1R2);
+linkUpDown(L1R4,L1R3);
+linkNESW(L1R5, L1R4);
+linkNWSE(L1R1, L1R5);
+
 //Spawn in at l1r1
 Player.atLevel = L1;
 Player.atRoom = L1R1;
 
-
+//Parsing
 function canDo(action){
     //If the action is possible, canDo is true
     if(action == "North" && Player.atRoom.north != false && Player.atRoom.northDoor == false){
