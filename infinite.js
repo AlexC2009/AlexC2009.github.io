@@ -1,5 +1,7 @@
-function typeObject(){
-    this.myProperty = 1;
+function typeObject(Parameter){
+    if (Parameter == "Green"){
+        this.myProperty = Parameter;
+    } else {this.myProperty = "Blue";}
     this.myMethod = function(){
         console.log("Method!");
     }
