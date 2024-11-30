@@ -122,6 +122,13 @@ function linkNWSE(Northwest, Southeast){
     Northwest.southeast = Southeast;
     Southeast.northwest = Northwest;
 }
+function createLevel(LevelName, NumberOfRooms, ){
+    eval("var " + LevelName + " = new Level()");
+    for(var i = 0; i < NumberOfRooms; i++){
+        eval("var " + LevelName + "R" + i + " = new Room()");
+        eval(LevelName + ".rooms.push(" + LevelName + "R" + i + ")");
+    }
+}
 
 //Level One create
 var L1 = new Level();
@@ -148,6 +155,8 @@ for(var i = 0; i < L1.rooms.length; i++){
 //Spawn in at l1r1
 Player.atLevel = L1;
 Player.atRoom = L1R1;
+createLevel("L2", 1);
+eval("Player.move(L2R0)");
 
 //Parsing
 function canDo(action){
