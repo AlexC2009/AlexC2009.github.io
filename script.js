@@ -38,6 +38,7 @@ function Room(){
 }
 function Level(){
     this.rooms = [];
+    this.name = "";
 }
 //Furniture types
 function Chair(){
@@ -122,12 +123,8 @@ function linkNWSE(Northwest, Southeast){
     Northwest.southeast = Southeast;
     Southeast.northwest = Northwest;
 }
-function createLevel(LevelName, NumberOfRooms, ){
-    eval("var " + LevelName + " = new Level()");
-    for(var i = 0; i < NumberOfRooms; i++){
-        eval("var " + LevelName + "R" + i + " = new Room()");
-        eval(LevelName + ".rooms.push(" + LevelName + "R" + i + ")");
-    }
+function newRoom(Level){
+    eval("var " + Level.name + "Room" + Level.rooms.length + " = new Room()");
 }
 
 //Level One create
