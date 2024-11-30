@@ -135,7 +135,8 @@ linkNESW(L1R5, L1R4);
 linkNWSE(L1R1, L1R5);
 L1.rooms = [L1R1, L1R2, L1R3, L1R4, L1R5];
 for(var i = 0; i < L1.rooms.length; i++){
-    L1.rooms[i].northWallFurniture.push(eval("var table" + i + "= new Table()"));
+    eval("var table" + i + "= new Table()");
+    L1.rooms[i].northWallFurniture.push(eval("table" + i));
 }
 table3.contents.push("Potato");
 
