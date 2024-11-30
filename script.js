@@ -30,26 +30,36 @@ function Room(){
     this.southEastDoor = false;
     this.southWestDoor = false;
     //Items
-    this.furniture = [];
+    this.northWallFurniture = [];
+    this.southWallFurniture = [];
+    this.eastWallFurniture = [];
+    this.westWallFurniture = [];
     this.description = "";
 }
 function Level(){
     this.rooms = [];
 }
-function Item(){
-    this.use = function(){
-        console.log("Used!");
-    }
-}
-function Furniture(){
+//Furniture types
+function Chair(){
     this.inReach = true;
-    this.onTop = [];
+    this.contents = [];
+}
+function Table(){
+    this.inReach = true;
+    this.contents = [];
+}
+//Items
+function Item(){
+    this.useItem = function(){
+        console.log("Item Used!");
+    }
 }
 //Player object
 var Player = {
     //Location
     atLevel: false,
     atRoom: false,
+    riding: "none",
     move: function(direction){
         if (direction == "North"){
             this.atRoom = this.atRoom.north;
@@ -123,6 +133,11 @@ linkEastWest(L1R3, L1R2);
 linkUpDown(L1R4,L1R3);
 linkNESW(L1R5, L1R4);
 linkNWSE(L1R1, L1R5);
+L1.rooms = [L1R1, L1R2, L1R3, L1R4, L1R5];
+for(var i = 0; i < L1.rooms.length; i++){
+    L1.rooms[i].northWallFurniture.push(eval("var table" + i + "= new Table()"));
+}
+table3.contents.push("Potato");
 
 //Spawn in at l1r1
 Player.atLevel = L1;
