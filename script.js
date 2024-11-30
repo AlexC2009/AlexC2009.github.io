@@ -5,7 +5,7 @@ var output = [];
 //Other variables
 var movements = ["North", "South", "East", "West", "Up", "Down", "Northeast", "Northwest", "Southeast", "Southwest"];
 
-//Basic gameplay objects as constructor functions
+//Rooms and Levels
 function Room(){
     //Connected rooms
     this.north = false;
@@ -123,9 +123,6 @@ function linkNWSE(Northwest, Southeast){
     Northwest.southeast = Southeast;
     Southeast.northwest = Northwest;
 }
-function newRoom(Level){
-    eval("var " + Level.name + "Room" + Level.rooms.length + " = new Room()");
-}
 
 //Level One create
 var L1 = new Level();
@@ -152,8 +149,6 @@ for(var i = 0; i < L1.rooms.length; i++){
 //Spawn in at l1r1
 Player.atLevel = L1;
 Player.atRoom = L1R1;
-createLevel("L2", 1);
-eval("Player.move(L2R0)");
 
 //Parsing
 function canDo(action){
