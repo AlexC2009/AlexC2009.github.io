@@ -43,10 +43,17 @@ function Level(){
 function Chair(){
     this.inReach = true;
     this.contents = [];
+    this.description = "";
 }
 function Table(){
     this.inReach = true;
+    this.drawers = [];
     this.contents = [];
+    this.description = "";
+}
+function Drawer(){
+    this.contents = [];
+    this.description = "";
 }
 //Items
 function Item(){
@@ -138,8 +145,6 @@ for(var i = 0; i < L1.rooms.length; i++){
     eval("var table" + i + "= new Table()");
     L1.rooms[i].northWallFurniture.push(eval("table" + i));
 }
-table3.contents.push("Potato");
-
 //Spawn in at l1r1
 Player.atLevel = L1;
 Player.atRoom = L1R1;
