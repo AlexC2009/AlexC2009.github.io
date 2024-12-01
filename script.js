@@ -6,6 +6,11 @@ var output = [];
 var movements = ["North", "South", "East", "West", "Up", "Down", "Northeast", "Northwest", "Southeast", "Southwest"];
 
 //Rooms and Levels
+/* Room description syntax:
+"It is <adjectives>."
+Ex: It is a large room, colored in a distasteful sort of beige.
+No need to add furniture or npc descriptions
+*/
 function Room(Description){
     //Connected rooms
     this.north = false;
@@ -34,6 +39,8 @@ function Room(Description){
     this.southWallFurniture = [];
     this.eastWallFurniture = [];
     this.westWallFurniture = [];
+    //Description
+    this.name = "a room";
     this.description = Description;
 }
 function Level(Name){
@@ -41,6 +48,12 @@ function Level(Name){
     this.name = Name;
 }
 //Furniture types
+/*Furniture description syntax:
+"a(n) <adjective> <type of furniture> <additional adjectives>"
+Do not add periods, but commas are acceptable
+For subcontainers like drawers, descriptions are added automatically.
+Ex: an ornate red table with gold trimmings
+*/
 function Chair(Description){
     this.inReach = true;
     this.contents = [];
@@ -48,9 +61,13 @@ function Chair(Description){
 }
 function Table(Description){
     this.inReach = true;
+    //Create drawers BEFORE table
     this.drawers = [];
     this.contents = [];
-    this.description = Description;
+    this.description = Description
+    if (this.drawers != []){
+        this.description = Description + " with " + this.drawers.length + " drawers";
+    }
 }
 function Drawer(Description){
     this.contents = [];
@@ -69,27 +86,35 @@ var Player = {
     atLevel: false,
     atRoom: false,
     riding: "none",
+    facing: "North",
     move: function(direction){
         if (direction == "North"){
             this.atRoom = this.atRoom.north;
+            this.facing = "North";
         } else if (direction == "South"){
             this.atRoom = this.atRoom.south;
+            this.facing = "South";
         } else if (direction == "East"){
             this.atRoom = this.atRoom.east;
+            this.facing = "East";
         } else if (direction == "West"){
             this.atRoom = this.atRoom.west;
+            this.facing = "West";
         } else if (direction == "Up"){
             this.atRoom = this.atRoom.up;
         } else if (direction == "Down"){
             this.atRoom = this.atRoom.down;
         } else if (direction == "Northeast"){
             this.atRoom = this.atRoom.northeast;
+            this.facing = "Northeast";
         } else if (direction == "Northwest"){
             this.atRoom = this.atRoom.northWest;
+            this.facing = "Northwest";
         } else if (direction == "Southeast"){
             this.atRoom = this.atRoom.southEast;
+            this.facing = "Southeast";
         } else if (direction == "Southwest"){
-            this.atRoom = this.atRoom.southWest;
+            this.facing = "Southwest";
         } else {
             //Teleport to specified room if not a direction
             this.atRoom = direction;
@@ -185,11 +210,28 @@ function parseInput(){
         //Output the result of the action
         document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + output[output.length-1];
         if (movements.includes(input)){
-            document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + Player.atRoom.description;
+            document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n" + describe(Player.atRoom);
         }
     } 
      //Otherwise, output an error message
     else{
         document.getElementById("outputLog").innerHTML = document.getElementById("outputLog").innerHTML + "\n Error";
+    }
+}
+//To do: Add permutations for every facings
+function describe(Room){
+    var furnitureDescription = "";
+    if(Player.facing == "North"){
+        if (Room.northWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.northWallFurniture.length-1; i++){
+                furnitureDescriptions.concact(Room.northWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concact(" and ", Room.northWallFurniture[Room.northWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "In front of you, you see " +  furnitureDescriptions;
+        }
+    }
+    if(movements.includes(input)){
+        return "You enter " + Room.name + ". " + Room.description;
     }
 }
