@@ -276,6 +276,6 @@ function describe(Room){
     }
         */
     if(movements.includes(input)){
-        return "You enter " + Room.name + ". " + Room.description;
+        return "You enter " + Room.name + ". " + Room.description + furnitureDescription;
     }
 }
