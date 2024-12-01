@@ -222,31 +222,32 @@ function parseInput(){
 function describe(Room){
     var furnitureDescription = "";
     if(Player.facing == "North"){
-        if (Room.northWallFurniture != []){
+        if (Room.northWallFurniture.length != 0){
             var furnitureDescriptions = "";
             for(var i = 0; i < Room.northWallFurniture.length-1; i++){
                 furnitureDescriptions.concat(Room.northWallFurniture[i].description, ";");
             }
-            furnitureDescriptions.concat(" and ", Room.northWallFurniture[Room.northWallFurniture.length].description, ".");
+            furnitureDescriptions.concat(" and ", Room.northWallFurniture[Room.northWallFurniture.length-1].description, ".");
             furnitureDescription = furnitureDescription + "In front of you, you see " +  furnitureDescriptions;
         }
-        if (Room.eastWallFurniture != []){
+        if (Room.eastWallFurniture.length != 0){
             var furnitureDescriptions = "";
             for(var i = 0; i < Room.eastWallFurniture.length-1; i++){
                 furnitureDescriptions.concat(Room.eastWallFurniture[i].description, ";");
             }
-            furnitureDescriptions.concat(" and ", Room.eastWallFurniture[Room.eastWallFurniture.length].description, ".");
+            furnitureDescriptions.concat(" and ", Room.eastWallFurniture[Room.eastWallFurniture.length-1].description, ".");
             furnitureDescription = furnitureDescription + "To your right, you see " +  furnitureDescriptions;
         }
-        if (Room.westWallFurniture != []){
+        if (Room.westWallFurniture.length != 0){
             var furnitureDescriptions = "";
             for(var i = 0; i < Room.westWallFurniture.length-1; i++){
                 furnitureDescriptions.concat(Room.westWallFurniture[i].description, ";");
             }
-            furnitureDescriptions.concat(" and ", Room.westWallFurniture[Room.westWallFurniture.length].description, ".");
+            furnitureDescriptions.concat(" and ", Room.westWallFurniture[Room.westWallFurniture.length-1].description, ".");
             furnitureDescription = furnitureDescription + "To your left, you see " +  furnitureDescriptions;
         }
     }
+    /*
     if(Player.facing == "East"){
         if (Room.eastWallFurniture != []){
             var furnitureDescriptions = "";
@@ -273,6 +274,7 @@ function describe(Room){
             furnitureDescription = furnitureDescription + "To your left, you see " +  furnitureDescriptions;
         }
     }
+        */
     if(movements.includes(input)){
         return "You enter " + Room.name + ". " + Room.description;
     }
