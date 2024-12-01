@@ -6,7 +6,7 @@ var output = [];
 var movements = ["North", "South", "East", "West", "Up", "Down", "Northeast", "Northwest", "Southeast", "Southwest"];
 
 //Rooms and Levels
-function Room(){
+function Room(Description){
     //Connected rooms
     this.north = false;
     this.south = false;
@@ -29,38 +29,39 @@ function Room(){
     this.northWestDoor = false;
     this.southEastDoor = false;
     this.southWestDoor = false;
-    //Items
+    //Furniture
     this.northWallFurniture = [];
     this.southWallFurniture = [];
     this.eastWallFurniture = [];
     this.westWallFurniture = [];
-    this.description = "";
+    this.description = Description;
 }
-function Level(){
+function Level(Name){
     this.rooms = [];
-    this.name = "";
+    this.name = Name;
 }
 //Furniture types
-function Chair(){
+function Chair(Description){
     this.inReach = true;
     this.contents = [];
-    this.description = "";
+    this.description = Description;
 }
-function Table(){
+function Table(Description){
     this.inReach = true;
     this.drawers = [];
     this.contents = [];
-    this.description = "";
+    this.description = Description;
 }
-function Drawer(){
+function Drawer(Description){
     this.contents = [];
-    this.description = "";
+    this.description = Description;
 }
 //Items
-function Item(){
+function Item(Description){
     this.useItem = function(){
         console.log("Item Used!");
     }
+    this.description = Description;
 }
 //Player object
 var Player = {
@@ -142,10 +143,6 @@ linkUpDown(L1R4,L1R3);
 linkNESW(L1R5, L1R4);
 linkNWSE(L1R1, L1R5);
 L1.rooms = [L1R1, L1R2, L1R3, L1R4, L1R5];
-for(var i = 0; i < L1.rooms.length; i++){
-    eval("var table" + i + "= new Table()");
-    L1.rooms[i].northWallFurniture.push(eval("table" + i));
-}
 //Spawn in at l1r1
 Player.atLevel = L1;
 Player.atRoom = L1R1;
