@@ -225,10 +225,52 @@ function describe(Room){
         if (Room.northWallFurniture != []){
             var furnitureDescriptions = "";
             for(var i = 0; i < Room.northWallFurniture.length-1; i++){
-                furnitureDescriptions.concact(Room.northWallFurniture[i].description, ";");
+                furnitureDescriptions.concat(Room.northWallFurniture[i].description, ";");
             }
-            furnitureDescriptions.concact(" and ", Room.northWallFurniture[Room.northWallFurniture.length].description, ".");
+            furnitureDescriptions.concat(" and ", Room.northWallFurniture[Room.northWallFurniture.length].description, ".");
             furnitureDescription = furnitureDescription + "In front of you, you see " +  furnitureDescriptions;
+        }
+        if (Room.eastWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.eastWallFurniture.length-1; i++){
+                furnitureDescriptions.concat(Room.eastWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concat(" and ", Room.eastWallFurniture[Room.eastWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "To your right, you see " +  furnitureDescriptions;
+        }
+        if (Room.westWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.westWallFurniture.length-1; i++){
+                furnitureDescriptions.concat(Room.westWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concat(" and ", Room.westWallFurniture[Room.westWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "To your left, you see " +  furnitureDescriptions;
+        }
+    }
+    if(Player.facing == "East"){
+        if (Room.eastWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.eastWallFurniture.length-1; i++){
+                furnitureDescriptions.concat(Room.eastWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concat(" and ", Room.eastWallFurniture[Room.eastWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "In front of you, you see " +  furnitureDescriptions;
+        }
+        if (Room.eastWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.eastWallFurniture.length-1; i++){
+                furnitureDescriptions.concat(Room.eastWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concat(" and ", Room.eastWallFurniture[Room.eastWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "To your right, you see " +  furnitureDescriptions;
+        }
+        if (Room.westWallFurniture != []){
+            var furnitureDescriptions = "";
+            for(var i = 0; i < Room.westWallFurniture.length-1; i++){
+                furnitureDescriptions.concat(Room.westWallFurniture[i].description, ";");
+            }
+            furnitureDescriptions.concat(" and ", Room.westWallFurniture[Room.westWallFurniture.length].description, ".");
+            furnitureDescription = furnitureDescription + "To your left, you see " +  furnitureDescriptions;
         }
     }
     if(movements.includes(input)){
